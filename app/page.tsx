@@ -1,8 +1,10 @@
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import AuthButton from "./auth-button";
-// anything in the app directory is automatically a server componet unless
-// directed by using the 'use client' directive at the top of the page 
+
+// anything in the app directory is automatically a server component unless
+// directed by using the 'use client' directive at the top of the page
+
 // async lets us fetch data in the same component
 export default async function Home() {
   // runs all on the server
@@ -12,7 +14,7 @@ export default async function Home() {
     { cookies },
     { supabaseUrl: url, supabaseKey: key }
   );
-  const { data: tweets } = await supabase.from("tweets").select()
+  const { data: tweets } = await supabase.from("tweets").select();
 
   return (
     <>
