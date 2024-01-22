@@ -3,6 +3,7 @@ import { cookies } from "next/headers";
 import AuthButton from "./auth-button";
 import AuthButtonServer from "./auth-button-server";
 import { redirect } from "next/navigation";
+import NewTweet from "./new-tweet";
 
 // anything in the app directory is automatically a server component unless
 // directed by using the 'use client' directive at the top of the page
@@ -24,12 +25,13 @@ export default async function Home() {
     redirect("/login");
   }
 
-  const { data: tweets } = await supabase.from("tweets").select();
+  const { data: tweets } = await supabase.from("tweets").select("*, profiles(*)");
 
   return (
-    <>
+    <div className="min-h-screen bg-black text-white">
       <AuthButtonServer />
+      <NewTweet />
       <pre>{JSON.stringify(tweets, null, 2)}</pre>;
-    </>
+    </div>
   );
 }
