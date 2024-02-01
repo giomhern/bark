@@ -4,6 +4,7 @@ import AuthButton from "./auth-button";
 import AuthButtonServer from "./auth-button-server";
 import { redirect } from "next/navigation";
 import NewTweet from "./new-tweet";
+import Likes from "./likes";
 
 // anything in the app directory is automatically a server component unless
 // directed by using the 'use client' directive at the top of the page
@@ -25,9 +26,17 @@ export default async function Home() {
     redirect("/login");
   }
 
-  const { data: tweets } = await supabase
+  const { data } = await supabase
     .from("tweets")
-    .select("*, profiles(*)");
+    .select("*, profiles(*), likes(*)");
+
+  const tweets = data?.map((tweet) => ({
+    ...tweet,
+    user_has_liked_tweet: tweet.likes.find(
+      (like) => like.user_id === session.user.id
+    ),
+    likes: tweet.likes.length,
+  })) ?? [];
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -39,6 +48,7 @@ export default async function Home() {
             {tweet?.profiles?.name} {tweet?.profiles?.user_name}
           </p>
           <p>{tweet.tweet}</p>
+          <Likes tweet={tweet} />
         </div>
       ))}
     </div>
