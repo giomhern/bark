@@ -25,13 +25,22 @@ export default async function Home() {
     redirect("/login");
   }
 
-  const { data: tweets } = await supabase.from("tweets").select("*, profiles(*)");
+  const { data: tweets } = await supabase
+    .from("tweets")
+    .select("*, profiles(*)");
 
   return (
     <div className="min-h-screen bg-black text-white">
       <AuthButtonServer />
       <NewTweet />
-      <pre>{JSON.stringify(tweets, null, 2)}</pre>;
+      {tweets?.map((tweet) => (
+        <div key={tweet.id}>
+          <p>
+            {tweet?.profiles?.name} {tweet?.profiles?.user_name}
+          </p>
+          <p>{tweet.tweet}</p>
+        </div>
+      ))}
     </div>
   );
 }
