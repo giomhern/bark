@@ -5,6 +5,7 @@ import AuthButtonServer from "./auth-button-server";
 import { redirect } from "next/navigation";
 import NewTweet from "./new-tweet";
 import Likes from "./likes";
+import Tweets from "./tweets";
 
 // anything in the app directory is automatically a server component unless
 // directed by using the 'use client' directive at the top of the page
@@ -28,29 +29,23 @@ export default async function Home() {
 
   const { data } = await supabase
     .from("tweets")
-    .select("*, profiles(*), likes(*)");
+    .select("*, author: profiles(*), likes(user_id)");
 
-  const tweets = data?.map((tweet) => ({
-    ...tweet,
-    user_has_liked_tweet: tweet.likes.find(
-      (like) => like.user_id === session.user.id
-    ),
-    likes: tweet.likes.length,
-  })) ?? [];
+  const tweets =
+    data?.map((tweet) => ({
+      ...tweet,
+      author: Array.isArray(tweet.author) ? tweet.author[0] : tweet.author,
+      user_has_liked_tweet: !!tweet.likes.find(
+        (like) => like.user_id === session.user.id
+      ),
+      likes: tweet.likes.length,
+    })) ?? [];
 
   return (
     <div className="min-h-screen bg-black text-white">
       <AuthButtonServer />
       <NewTweet />
-      {tweets?.map((tweet) => (
-        <div key={tweet.id}>
-          <p>
-            {tweet?.profiles?.name} {tweet?.profiles?.user_name}
-          </p>
-          <p>{tweet.tweet}</p>
-          <Likes tweet={tweet} />
-        </div>
-      ))}
+      <Tweets tweets={tweets} />
     </div>
   );
 }
