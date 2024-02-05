@@ -16,11 +16,12 @@ export default function GithubButton() {
       },
     });
   };
+
   return (
     <button onClick={handleSignIn} className="hover:bg-gray-800 p-8 rounded-xl">
       <Image
         src="/github-mark-white.png"
-        alt="github logo"
+        alt="GitHub logo"
         width={100}
         height={100}
       />

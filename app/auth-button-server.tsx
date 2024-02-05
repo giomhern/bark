@@ -6,7 +6,7 @@ import { cookies } from "next/headers";
 import AuthButton from "./auth-button";
 
 export default async function AuthButtonServer() {
-  const supabase = createServerComponentClient(
+  const supabase = createServerComponentClient<Database>(
     { cookies },
     {
       supabaseKey: process.env.NEXT_PUBLIC_ANON_KEY,
