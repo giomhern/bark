@@ -7,6 +7,8 @@ import NewTweet from "./new-tweet";
 import Likes from "./likes";
 import Tweets from "./tweets";
 
+export const dynamic = "force-dynamic";
+
 // anything in the app directory is automatically a server component unless
 // directed by using the 'use client' directive at the top of the page
 
@@ -29,7 +31,8 @@ export default async function Home() {
 
   const { data } = await supabase
     .from("tweets")
-    .select("*, author: profiles(*), likes(user_id)");
+    .select("*, author: profiles(*), likes(user_id)")
+    .order("created_at", { ascending: false });
 
   const tweets =
     data?.map((tweet) => ({
@@ -42,9 +45,12 @@ export default async function Home() {
     })) ?? [];
 
   return (
-    <div className="min-h-screen bg-black text-white">
-      <AuthButtonServer />
-      <NewTweet />
+    <div className="w-full max-w-xl mx-auto text-white">
+      <div className="flex justify-between px-4 py-6 border border-gray-800">
+        <h1 className="text-xl font-bold px-4 py-6">Home</h1>
+        <AuthButtonServer />
+      </div>
+      <NewTweet user={session.user} />
       <Tweets tweets={tweets} />
     </div>
   );

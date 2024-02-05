@@ -1,12 +1,12 @@
-import { createServerActionClient } from "@supabase/auth-helpers-nextjs";
+import { User, createServerActionClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import { useRouter } from "next/navigation";
-
-export default function NewTweet() {
+import Image from "next/image";
+export const dynamic = "force-dynamic";
+export default function NewTweet({ user }: { user: User }) {
   const addTweet = async (formData: FormData) => {
     "use server";
     const title = String(formData.get("title"));
-
     const supabase = createServerActionClient<Database>(
       { cookies },
       {
@@ -14,16 +14,28 @@ export default function NewTweet() {
         supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
       }
     );
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-    if (user) {
-      await supabase.from("tweets").insert({ tweet: title, user_id: user.id });
-    }
+
+    await supabase.from("tweets").insert({ tweet: title, user_id: user.id });
   };
+
   return (
-    <form action={addTweet} className="bg-inherit text-black">
-      <input name="title" />
+    <form className="border border-gray-800 border-t-0" action={addTweet}>
+      <div className="flex py-8 px-4">
+        <div className="h-12 w-12">
+          <Image
+            src={user.user_metadata.avatar_url}
+            alt="user avatar"
+            width={48}
+            height={48}
+            className="rounded-full"
+          />
+        </div>
+        <input
+          name="title"
+          className="bg-inherit flex-1 ml-2 text-2xl leading-loose placeholder-gray-500 px-2"
+          placeholder="What is happening?!"
+        />
+      </div>
     </form>
   );
 }
