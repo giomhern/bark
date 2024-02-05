@@ -2,7 +2,7 @@
 
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import Image from "next/image";
-export const dynamic = "force-dynamic";
+
 export default function GithubButton() {
   const supabase = createClientComponentClient<Database>({
     supabaseKey: process.env.NEXT_PUBLIC_ANON_KEY,

@@ -1,10 +1,8 @@
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
-import AuthButton from "./auth-button";
 import AuthButtonServer from "./auth-button-server";
 import { redirect } from "next/navigation";
 import NewTweet from "./new-tweet";
-import Likes from "./likes";
 import Tweets from "./tweets";
 
 export const dynamic = "force-dynamic";

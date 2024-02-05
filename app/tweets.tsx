@@ -4,6 +4,7 @@ import Likes from "./likes";
 import { useEffect, useOptimistic } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { cookies } from "next/headers";
 
 export default function Tweets({ tweets }: { tweets: TweetWithAuthor[] }) {
   const [optimisticTweets, addOptimisticTweet] = useOptimistic<

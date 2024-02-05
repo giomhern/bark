@@ -1,19 +1,16 @@
-import { User, createServerActionClient } from "@supabase/auth-helpers-nextjs";
+import { createServerActionClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
-import { useRouter } from "next/navigation";
 import Image from "next/image";
+
+import type { User } from "@supabase/auth-helpers-nextjs";
+
 export const dynamic = "force-dynamic";
+
 export default function NewTweet({ user }: { user: User }) {
   const addTweet = async (formData: FormData) => {
     "use server";
     const title = String(formData.get("title"));
-    const supabase = createServerActionClient<Database>(
-      { cookies },
-      {
-        supabaseKey: process.env.NEXT_PUBLIC_ANON_KEY,
-        supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
-      }
-    );
+    const supabase = createServerActionClient<Database>({ cookies });
 
     await supabase.from("tweets").insert({ tweet: title, user_id: user.id });
   };
