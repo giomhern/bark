@@ -18,10 +18,8 @@ export default function Tweets({ tweets }: { tweets: TweetWithAuthor[] }) {
     newOptimisticTweets[index] = newTweet;
     return newOptimisticTweets;
   });
-  const supabase = createClientComponentClient({
-    supabaseKey: process.env.NEXT_PUBLIC_ANON_KEY,
-    supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
-  });
+
+  const supabase = createClientComponentClient();
   const router = useRouter();
 
   useEffect(() => {
@@ -45,7 +43,7 @@ export default function Tweets({ tweets }: { tweets: TweetWithAuthor[] }) {
     };
   }, [supabase, router]);
 
-  return tweets.map((tweet) => (
+  return optimisticTweets.map((tweet) => (
     <div
       key={tweet.id}
       className="border border-gray-800 border-t-0 px-4 py-8 flex"
@@ -61,12 +59,12 @@ export default function Tweets({ tweets }: { tweets: TweetWithAuthor[] }) {
       </div>
       <div className="ml-4">
         <p>
-          <span className="font-bold text-white">{tweet.author.name}</span>
+          <span className="font-bold">{tweet.author.name}</span>
           <span className="text-sm ml-2 text-gray-400">
             {tweet.author.user_name}
           </span>
         </p>
-        <p className="text-white">{tweet.tweet}</p>
+        <p>{tweet.tweet}</p>
         <Likes tweet={tweet} addOptimisticTweet={addOptimisticTweet} />
       </div>
     </div>

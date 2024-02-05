@@ -1,17 +1,18 @@
 "use client";
-import {
-  createClientComponentClient,
-  Session,
-} from "@supabase/auth-helpers-nextjs";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from "next/navigation";
-import { cookies } from "next/headers";
 
-export default function AuthButton({ session }: { session: Session | null }) {
-  const supabase = createClientComponentClient({
+import type { Session } from "@supabase/auth-helpers-nextjs";
+
+export default function AuthButtonClient({
+  session,
+}: {
+  session: Session | null;
+}) {
+  const supabase = createClientComponentClient<Database>({
     supabaseKey: process.env.NEXT_PUBLIC_ANON_KEY,
     supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
   });
-
   const router = useRouter();
 
   const handleSignOut = async () => {
