@@ -17,7 +17,10 @@ export default async function Home() {
   const key = process.env.NEXT_PUBLIC_ANON_KEY;
   const supabase = createServerComponentClient<Database>(
     { cookies },
-    { supabaseUrl: url, supabaseKey: key }
+    {
+      supabaseKey: process.env.NEXT_PUBLIC_ANON_KEY,
+      supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
+    }
   );
   const {
     data: { session },

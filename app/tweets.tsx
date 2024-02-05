@@ -19,7 +19,10 @@ export default function Tweets({ tweets }: { tweets: TweetWithAuthor[] }) {
     return newOptimisticTweets;
   });
 
-  const supabase = createClientComponentClient();
+  const supabase = createClientComponentClient({
+    supabaseKey: process.env.NEXT_PUBLIC_ANON_KEY,
+    supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
+  });
   const router = useRouter();
 
   useEffect(() => {
