@@ -41,6 +41,7 @@ export default function Likes({
            .insert({ user_id: user.id, tweet_id: tweet.id });
        }
      }
+     router.refresh();
    };
    return (
      <button onClick={handleLikes} className="group flex items-center">
