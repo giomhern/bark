@@ -65,7 +65,7 @@ export default function Tweets({ tweets }: { tweets: TweetWithAuthor[] }) {
             {tweet.author.user_name}
           </span>
         </p>
-        <p className="font-white">{tweet.tweet}</p>
+        <p className="text-white">{tweet.tweet}</p>
         <Likes tweet={tweet} addOptimisticTweet={addOptimisticTweet} />
       </div>
     </div>
