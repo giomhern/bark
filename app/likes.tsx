@@ -12,7 +12,10 @@ export default function Likes({
 }) {
   const router = useRouter();
    const handleLikes = async () => {
-     const supabase = createClientComponentClient<Database>();
+     const supabase = createClientComponentClient<Database>({
+       supabaseKey: process.env.NEXT_PUBLIC_ANON_KEY,
+       supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
+     });
      const {
        data: { user },
      } = await supabase.auth.getUser();

@@ -10,7 +10,13 @@ export default function NewTweet({ user }: { user: User }) {
   const addTweet = async (formData: FormData) => {
     "use server";
     const title = String(formData.get("title"));
-    const supabase = createServerActionClient<Database>({ cookies });
+    const supabase = createServerActionClient<Database>(
+      { cookies },
+      {
+        supabaseKey: process.env.NEXT_PUBLIC_ANON_KEY,
+        supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
+      }
+    );
 
     await supabase.from("tweets").insert({ tweet: title, user_id: user.id });
   };
