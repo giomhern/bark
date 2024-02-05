@@ -5,7 +5,7 @@ import {
 } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from "next/navigation";
 import { cookies } from "next/headers";
-export const dynamic = "force-dynamic";
+
 export default function AuthButton({ session }: { session: Session | null }) {
   const supabase = createClientComponentClient(
     {
