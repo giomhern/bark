@@ -3,10 +3,12 @@ import { cookies } from "next/headers";
 import Image from "next/image";
 
 import type { User } from "@supabase/auth-helpers-nextjs";
+import { useState } from "react";
 
 export const dynamic = "force-dynamic";
 
 export default function NewTweet({ user }: { user: User }) {
+  const [newTweet, setNewTweet] = useState("");
   const addTweet = async (formData: FormData) => {
     "use server";
     const title = String(formData.get("title"));
@@ -17,8 +19,12 @@ export default function NewTweet({ user }: { user: User }) {
         supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
       }
     );
+    await supabase.from("tweets").insert({ tweet: newTweet, user_id: user.id });
+    setNewTweet('');
+  };
 
-    await supabase.from("tweets").insert({ tweet: title, user_id: user.id });
+  const handleTweetChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setNewTweet(e.target.value);
   };
 
   return (
@@ -37,6 +43,8 @@ export default function NewTweet({ user }: { user: User }) {
           name="title"
           className="bg-inherit flex-1 ml-2 text-2xl leading-loose placeholder-gray-500 px-2 text-white"
           placeholder="What is happening?!"
+          onChange={handleTweetChange}
+          value={newTweet}
         />
       </div>
     </form>
