@@ -52,7 +52,7 @@ export default function NewTweet({ user }: { user: User }) {
           value={newTweet}
         />
         <button
-          className="border border-white bg-white px-4 py-2"
+          className="border border-white bg-white text-sm px-4 py-2"
           onClick={() => addTweet({ newTweet })}
         >
           Add tweet
