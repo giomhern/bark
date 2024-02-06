@@ -17,7 +17,7 @@ export default function NewTweet({ user }: { user: User }) {
   });
   const [newTweet, setNewTweet] = useState("");
 
-  async function addTweet({ newTweet }: { newTweet: string }) {
+async function addTweet({ newTweet }: { newTweet: string }) {
     try {
       const { error } = await supabase
         .from("tweets")
@@ -52,7 +52,7 @@ export default function NewTweet({ user }: { user: User }) {
           onChange={handleTweetChange}
           value={newTweet}
         />
-        <button onClick={() => addTweet}>Submit</button>
+        <button onClick={() => addTweet({ newTweet })}>Submit</button>
       </div>
     </form>
   );
