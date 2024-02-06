@@ -14,7 +14,7 @@ export default function NewTweet({ user }: { user: User }) {
     e.preventDefault();
     try {
       const response = await fetch("/api/addTweet", {
-        method: "POST",
+        method: 'POST',
         headers: {
           "Content-type": "application/json",
         },
