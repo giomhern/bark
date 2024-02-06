@@ -43,19 +43,10 @@ export default function NewTweet({ user }: { user: User }) {
 
   return (
     <form className="border border-gray-800 border-t-0" onSubmit={handleFormSubmit}>
-      <div className="grid grid-cols-3 gap-2 py-8 px-4">
-        <div className="h-12 w-12">
-          <Image
-            src={user.user_metadata.avatar_url}
-            alt="user avatar"
-            width={30}
-            height={30}
-            className="rounded-full"
-          />
-        </div>
+      <div className="flex gap-2 py-8 px-4 items-center">
         <input
           name="title"
-          className="bg-inherit flex-1 ml-2 text-2xl leading-loose placeholder-gray-500 px-2 text-white"
+          className="bg-inherit flex-1 ml-2 text-2xl leading-loose placeholder-gray-500 placeholder:text-sm px-2 text-white"
           placeholder="What is happening?!"
           onChange={(e) => setNewTweet(e.target.value)}
           value={newTweet}
