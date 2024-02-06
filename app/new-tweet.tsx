@@ -16,7 +16,7 @@ export default function NewTweet({ user }: { user: User }) {
       const response = await fetch("/api/addTweet", {
         method: 'POST',
         headers: {
-          "Content-type": "application/json",
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ tweet: newTweet, userId: user.id }),
       });
