@@ -46,7 +46,7 @@ export default function NewTweet({ user }: { user: User }) {
       <div className="flex gap-2 py-8 px-4 items-center">
         <input
           name="title"
-          className="bg-inherit flex-1 ml-2 text-2xl leading-loose placeholder-gray-500 placeholder:text-sm px-2 text-white"
+          className="bg-inherit ml-2 text-2xl leading-loose placeholder-gray-500 placeholder:text-sm px-2 text-white"
           placeholder="What is happening?!"
           onChange={(e) => setNewTweet(e.target.value)}
           value={newTweet}
