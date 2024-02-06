@@ -1,3 +1,4 @@
+"use client"
 import { createServerActionClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import Image from "next/image";
@@ -9,18 +10,23 @@ export const dynamic = "force-dynamic";
 
 export default function NewTweet({ user }: { user: User }) {
   const [newTweet, setNewTweet] = useState("");
-  const addTweet = async (formData: FormData) => {
-    "use server";
-    const title = String(formData.get("title"));
-    const supabase = createServerActionClient<Database>(
-      { cookies },
-      {
-        supabaseKey: process.env.NEXT_PUBLIC_ANON_KEY,
-        supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
+  const addTweet = async (e: any) => {
+    e.preventDefault();
+    try {
+      const response = await fetch("/api/addTweet", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({ tweet: newTweet, userId: user.id }),
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
-    );
-    await supabase.from("tweets").insert({ tweet: newTweet, user_id: user.id });
-    setNewTweet('');
+      setNewTweet("");
+    } catch (error) {
+      console.error("Failed to submit tweet", error);
+    }
   };
 
   const handleTweetChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,7 +34,7 @@ export default function NewTweet({ user }: { user: User }) {
   };
 
   return (
-    <form className="border border-gray-800 border-t-0" action={addTweet}>
+    <form className="border border-gray-800 border-t-0" onSubmit={addTweet}>
       <div className="flex py-8 px-4">
         <div className="h-12 w-12">
           <Image
