@@ -3,7 +3,7 @@ import { createClient } from "@supabase/supabase-js";
 let supabase_url = process.env.NEXT_PUBLIC_SUPABASE_URL || "TODO: Supabase url"
 let supabase_key = process.env.NEXT_PUBLIC_SUPABASE_KEY || "TODO: Supabase key"
 
-export default async function POST(req: any, res: any){
+export default async function handler(req: any, res: any){
     console.log('req method: ', req.method)
     console.log('req object: ', req)
     if(req.method == 'POST'){
