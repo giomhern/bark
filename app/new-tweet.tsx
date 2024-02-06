@@ -30,6 +30,7 @@ export default function NewTweet({ user }: { user: User }) {
       console.log(user.id);
 
       if (error) throw error;
+      setNewTweet('')
       router.refresh()
     } catch {
       alert("error submitting data!");
