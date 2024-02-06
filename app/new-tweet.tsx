@@ -17,15 +17,20 @@ export default function NewTweet({ user }: { user: User }) {
   });
   const [newTweet, setNewTweet] = useState("");
 
-async function addTweet({ newTweet }: { newTweet: string }) {
+  async function addTweet({ newTweet }: { newTweet: string }) {
     try {
       const { error } = await supabase
         .from("tweets")
         .insert({ tweet: newTweet, user_id: user.id });
-      if (Error) throw Error;
+        console.log(newTweet);
+        console.log(user.id);
+        console.log(error)
+        
+      if (error) throw error;
+
       alert("tweet submitted!");
     } catch {
-        alert("error submitting data!")
+      alert("error submitting data!");
     }
   }
 
@@ -49,10 +54,10 @@ async function addTweet({ newTweet }: { newTweet: string }) {
           name="title"
           className="bg-inherit flex-1 ml-2 text-2xl leading-loose placeholder-gray-500 px-2 text-white"
           placeholder="What is happening?!"
-          onChange={handleTweetChange}
+          onChange={(e) => setNewTweet(e.target.value)}
           value={newTweet}
         />
-        <button onClick={() => addTweet({ newTweet })}>Submit</button>
+        <button className="ml-2 border border-white bg-white px-5 py-3" onClick={() => addTweet({ newTweet })}>Submit</button>
       </div>
     </form>
   );
