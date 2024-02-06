@@ -4,6 +4,8 @@ let supabase_url = process.env.NEXT_PUBLIC_SUPABASE_URL || "TODO: Supabase url"
 let supabase_key = process.env.NEXT_PUBLIC_SUPABASE_KEY || "TODO: Supabase key"
 
 export default async function handler(req: any, res: any){
+    console.log('req method: ', req.method)
+    console.log('req object: ', req)
     if(req.method == 'POST'){
         const {tweet, userId} = req.body;
         const supabase = createClient(
