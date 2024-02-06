@@ -13,13 +13,16 @@ export default function NewTweet({ user }: { user: User }) {
   const addTweet = async (e: any) => {
     e.preventDefault();
     try {
-      const response = await fetch("/api/addTweet", {
-        method: 'POST',
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ tweet: newTweet, userId: user.id }),
-      });
+      const response = await fetch(
+        `${location.origin}/api/addTweet`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ tweet: newTweet, userId: user.id }),
+        }
+      );
       console.log(response)
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
