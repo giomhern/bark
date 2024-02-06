@@ -43,13 +43,13 @@ export default function NewTweet({ user }: { user: User }) {
 
   return (
     <form className="border border-gray-800 border-t-0" onSubmit={handleFormSubmit}>
-      <div className="flex py-8 px-4">
+      <div className="grid grid-cols-3 gap-2 py-8 px-4">
         <div className="h-12 w-12">
           <Image
             src={user.user_metadata.avatar_url}
             alt="user avatar"
-            width={48}
-            height={48}
+            width={30}
+            height={30}
             className="rounded-full"
           />
         </div>
@@ -61,10 +61,10 @@ export default function NewTweet({ user }: { user: User }) {
           value={newTweet}
         />
         <button
-          className="ml-2 border border-white bg-white px-5 py-2"
+          className="border border-white bg-white px-4 py-2"
           onClick={() => addTweet({ newTweet })}
         >
-          Submit
+          Add tweet
         </button>
       </div>
     </form>
