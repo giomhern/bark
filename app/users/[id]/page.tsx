@@ -8,7 +8,7 @@ import { cookies } from "next/headers";
 
 import { createClient } from "@supabase/supabase-js";
 
-export default function ProfilePage(){
+export default async function ProfilePage(){
     return  (
         <h1>This is your profile page...in the works</h1>
     )
