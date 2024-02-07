@@ -8,6 +8,7 @@ export default function GithubButton() {
     supabaseKey: process.env.NEXT_PUBLIC_ANON_KEY,
     supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
   });
+
   const handleSignIn = async () => {
     await supabase.auth.signInWithOAuth({
       provider: "github",

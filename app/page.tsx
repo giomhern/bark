@@ -5,6 +5,8 @@ import { redirect } from "next/navigation";
 import NewTweet from "./new-tweet";
 import Tweets from "./tweets";
 import Image from "next/image";
+import MyProfileClient from "./my-profile-client";
+import MyProfileServer from "./my-profile-server";
 
 export const dynamic = "force-dynamic";
 
@@ -52,7 +54,10 @@ export default async function Home() {
         <a href="/">
           <Image src="/dog-logo.png" alt="dog logo" height={80} width={80} />
         </a>
-        <AuthButtonServer />
+        <div className="flex gap-3">
+            <MyProfileServer />
+            <AuthButtonServer />
+        </div>
       </div>
       <NewTweet user={session.user} />
       <Tweets tweets={tweets} />
