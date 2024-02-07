@@ -51,9 +51,10 @@ export default function NewTweet({ user }: { user: User }) {
           placeholder="What is happening?!"
           onChange={(e) => setNewTweet(e.target.value)}
           value={newTweet}
+          contentEditable="true"
         />
         <button
-          className=" hover:bg-[#940a0a] bg-[#5a0101] text-sm pl-4 flex-shrink-0 text-[#f7f7f7] px-4 py-1"
+          className="hover:bg-[#940a0a] bg-[#5a0101] text-sm pl-4 flex-shrink-0 text-[#f7f7f7] px-4 py-1"
           onClick={() => addTweet({ newTweet })}
           type="button"
         >
