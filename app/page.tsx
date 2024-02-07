@@ -4,6 +4,7 @@ import AuthButtonServer from "./auth-button-server";
 import { redirect } from "next/navigation";
 import NewTweet from "./new-tweet";
 import Tweets from "./tweets";
+import Image from "next/image";
 
 export const dynamic = "force-dynamic";
 
@@ -47,8 +48,10 @@ export default async function Home() {
 
   return (
     <div className="w-full max-w-xl mx-auto">
-      <div className="flex justify-between px-4 py-6 border border-gray-800 border-t-0">
-        <h1 className="text-xl font-bold text-gray-300">Home</h1>
+      <div className="flex items-center justify-between px-4 py-6 border border-gray-200 border-t-0">
+        <a href="/">
+          <Image src="/dog-logo.png" alt="dog logo" height={80} width={80} />
+        </a>
         <AuthButtonServer />
       </div>
       <NewTweet user={session.user} />

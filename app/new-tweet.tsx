@@ -1,16 +1,9 @@
 "use client";
-import {
-  createClientComponentClient,
-  createServerActionClient,
-} from "@supabase/auth-helpers-nextjs";
-import { cookies } from "next/headers";
-import Image from "next/image";
-
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import type { User } from "@supabase/auth-helpers-nextjs";
 import { useState } from "react";
-import { Tweet } from "./global";
 import { useRouter } from "next/navigation";
-
+import Image from "next/image";
 export default function NewTweet({ user }: { user: User }) {
   const supabase = createClientComponentClient<Database>({
     supabaseKey: process.env.NEXT_PUBLIC_ANON_KEY,
@@ -18,7 +11,7 @@ export default function NewTweet({ user }: { user: User }) {
   });
   const router = useRouter();
   const [newTweet, setNewTweet] = useState("");
-  const handleFormSubmit = (event: { preventDefault: () => void; }) => {
+  const handleFormSubmit = (event: { preventDefault: () => void }) => {
     event.preventDefault(); // Prevent the form from submitting on Enter key or form action
   };
   async function addTweet({ newTweet }: { newTweet: string }) {
@@ -26,12 +19,10 @@ export default function NewTweet({ user }: { user: User }) {
       const { error } = await supabase
         .from("tweets")
         .insert({ tweet: newTweet, user_id: user.id });
-      console.log(newTweet);
-      console.log(user.id);
 
       if (error) throw error;
-      setNewTweet('')
-      router.refresh()
+      setNewTweet("");
+      router.refresh();
     } catch {
       alert("error submitting data!");
     }
@@ -42,20 +33,31 @@ export default function NewTweet({ user }: { user: User }) {
   };
 
   return (
-    <form className="border border-gray-800 border-t-0" onSubmit={handleFormSubmit}>
-      <div className="flex gap-2 py-8 px-4 items-center">
+    <form
+      className="border border-gray-200 border-t-0"
+      onSubmit={handleFormSubmit}
+    >
+      <div className="flex w-full gap-2 py-8 px-6 items-center justify-evenly ">
+        <Image
+          src={user.user_metadata.avatar_url}
+          alt="logo"
+          height={50}
+          width={50}
+          className="rounded-full"
+        />
         <input
           name="title"
-          className="bg-inherit ml-2 text-2xl leading-loose placeholder-gray-500 placeholder:text-sm px-2 text-white"
+          className="flex-1 appearance-none text-sm text-[#191515]  placeholder-gray-500 placeholder:text-md bg-transparent border-none w-full mr-3 py-1 px-2 leading-tight focus:outline-none"
           placeholder="What is happening?!"
           onChange={(e) => setNewTweet(e.target.value)}
           value={newTweet}
         />
         <button
-          className="border border-white bg-white text-sm px-4 py-2"
+          className=" hover:bg-[#940a0a] bg-[#5a0101] text-sm pl-4 flex-shrink-0 text-[#f7f7f7] px-4 py-1"
           onClick={() => addTweet({ newTweet })}
+          type="button"
         >
-          Add tweet
+          Send
         </button>
       </div>
     </form>

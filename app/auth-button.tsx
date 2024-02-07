@@ -30,7 +30,10 @@ export default function AuthButtonClient({
   };
 
   return session ? (
-    <button className="text-xs text-gray-400" onClick={handleSignOut}>
+    <button
+      className="text-xs text-gray-400 hover:text-[#940a0a]"
+      onClick={handleSignOut}
+    >
       Logout
     </button>
   ) : (

@@ -49,7 +49,7 @@ export default function Tweets({ tweets }: { tweets: TweetWithAuthor[] }) {
   return tweets.map((tweet) => (
     <div
       key={tweet.id}
-      className="border border-gray-800 border-t-0 px-4 py-8 flex"
+      className="border border-gray-200 border-t-0 px-4 py-8 flex"
     >
       <div className="h-12 w-12">
         <Image
@@ -60,14 +60,14 @@ export default function Tweets({ tweets }: { tweets: TweetWithAuthor[] }) {
           height={48}
         />
       </div>
-      <div className="ml-4">
+      <div className="ml-4 flex-1">
         <p>
-          <span className="font-bold text-white">{tweet.author.name}</span>
-          <span className="text-sm ml-2 text-gray-400 ">
+          <span className="font-bold text-md text-[#940a0a]">{tweet.author.name}</span>
+          <span className="text-sm ml-2 text-[#5a0101] ">
             {tweet.author.user_name}
           </span>
         </p>
-        <p className="text-white">{tweet.tweet}</p>
+        <p className="text-black text-sm">{tweet.tweet}</p>
         <Likes tweet={tweet} addOptimisticTweet={addOptimisticTweet} />
       </div>
     </div>
