@@ -1,14 +1,40 @@
-"use server";
-import { useRouter } from "next/router";
 import {
   User,
   createServerComponentClient,
 } from "@supabase/auth-helpers-nextjs";
+import { profile } from "console";
 import { cookies } from "next/headers";
 
-import { createClient } from "@supabase/supabase-js";
+export default async function ProfilePage({ params }: { params: any }) {
+  const supabase = createServerComponentClient(
+    { cookies },
+    {
+      supabaseKey: process.env.NEXT_PUBLIC_ANON_KEY,
+      supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
+    }
+  );
+  try {
+    const { id } = params;
+    const { data: user, error: error } = await supabase
+      .from("profiles")
+      .select("*")
+      .eq("id", id)
+      .single();
 
-export default async function ProfilePage({ params }: {params: any}) {
-  const { id } = params;
-  return <h1>This is your profile page...in the works for ID {id ?? "1"}</h1>;
+    if (user) {
+      return (
+        <div>
+          <p>{user.user_name}</p>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <p>Error fetching user profile page</p>
+        </div>
+      );
+    }
+  } catch (error) {
+    alert("Error fetching user profile page");
+  }
 }
