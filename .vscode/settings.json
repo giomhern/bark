@@ -11,5 +11,10 @@
     "nextjs",
     "supabase",
     "tailwindcss"
-]
+],
+"editor.renderWhitespace": "selection",
+"editor.guides.highlightActiveIndentation": false,
+"editor.guides.indentation": false,
+"workbench.tree.renderIndentGuides": "none",
+"editor.detectIndentation": false
 }

@@ -31,7 +31,7 @@ export default function AuthButtonClient({
 
   return session ? (
     <button
-      className="text-md px-5 py-2 border md:visible hidden border-gray-100 bg-primary-dark rounded-md text-gray-100"
+      className="text-md px-5 py-2 border border-gray-100 bg-primary-dark rounded-md text-xs text-gray-100"
       onClick={handleSignOut}
     >
       Logout

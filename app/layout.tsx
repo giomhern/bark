@@ -11,17 +11,17 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-    children,
+  children,
 }: {
-    children: React.ReactNode;
+  children: React.ReactNode;
 }) {
-    return (
-        <html lang="en">
-            <body>
-                <div className={`${rubik.className} bg-gray-100 min-h-screen flex`}>
-                    {children}
-                </div>
-            </body>
-        </html>
-    );
+  return (
+    <html lang="en">
+      <body>
+        <div className={`${rubik.className} bg-white min-h-screen flex`}>
+          {children}
+        </div>
+      </body>
+    </html>
+  );
 }

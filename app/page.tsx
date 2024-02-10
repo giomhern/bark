@@ -1,12 +1,10 @@
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
-import AuthButtonServer from "./auth-button-server";
 import { redirect } from "next/navigation";
-import NewTweet from "./new-tweet";
-import Tweets from "./tweets";
-import Image from "next/image";
-import MyProfileServer from "./my-profile-server";
-import Link from "next/link";
+import NewTweet from "./components/new-tweet";
+import Tweets from "./components/tweets";
+import Navigation from "./components/nav-bar";
+import LeftSideBar from "./components/left-side-bar";
 export const dynamic = "force-dynamic";
 
 // anything in the app directory is automatically a server component unless
@@ -48,30 +46,16 @@ export default async function Home() {
     })) ?? [];
 
   return (
-    <div className="w-full">
-      <div className="grid grid-cols-2 items-center py-8 md:py-0">
-        <a href="/" className="px-10">
-          <Image src="/bark-logo.png" alt="dog logo" height={40} width={40} />
-        </a>
-        <div className="flex gap-5 justify-end items-center pr-5 bg-primary-dark py-8">
-          <MyProfileServer />
-          <Link
-            href="#"
-            className="font-regular text-gray-100 md:visible hidden hover:text-primary-content "
-          >
-            Messages
-          </Link>
-          <Link
-            href="#"
-            className="font-regular text-gray-100 md:visible hidden hover:text-primary-content "
-          >
-            Favorites
-          </Link>
-          <AuthButtonServer />
+    <div className="w-full bg-gray-100">
+      <Navigation session={session} />
+      <div className="grid grid-cols-4">
+        <LeftSideBar user={session.user}/>
+        <div className="border-t-0 flex flex-col col-span-2">
+          <NewTweet user={session.user} />
+          <Tweets tweets={tweets} />
         </div>
+        <div className="">hello world</div>
       </div>
-      <NewTweet user={session.user} />
-      <Tweets tweets={tweets} />
     </div>
   );
 }

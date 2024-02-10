@@ -1,7 +1,7 @@
 "use client";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import type { User } from "@supabase/auth-helpers-nextjs";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 export default function NewTweet({ user }: { user: User }) {
@@ -33,11 +33,8 @@ export default function NewTweet({ user }: { user: User }) {
   };
 
   return (
-    <form
-      className="border border-gray-200 border-t-0"
-      onSubmit={handleFormSubmit}
-    >
-      <div className="flex w-full gap-2 py-8 px-6 items-center justify-evenly ">
+    <form className="border border-gray-200 flex " onSubmit={handleFormSubmit}>
+      <div className="flex w-full gap-2 py-4 px-6 items-center justify-evenly ">
         <Image
           src={user.user_metadata.avatar_url}
           alt="logo"
@@ -47,19 +44,23 @@ export default function NewTweet({ user }: { user: User }) {
         />
         <input
           name="title"
-          className="flex-1 appearance-none text-sm text-[#191515]  placeholder-gray-500 placeholder:text-md bg-transparent border-none w-full mr-3 py-1 px-2 leading-tight focus:outline-none"
+          className="flex-1 appearance-none text-sm text-[#191515] placeholder-gray-500 placeholder:text-md bg-transparent border-none w-full mr-3 py-1 px-2 leading-tight focus:outline-none resize-none overflow-hidden"
           placeholder="What is happening?!"
           onChange={(e) => setNewTweet(e.target.value)}
           value={newTweet}
-          contentEditable="true"
         />
         <button
-          className=" bg-gray-100 flex gap-3 text-sm tracking-regular border border-primary-dark text-primary-dark px-5 py-2 rounded-md"
+          className=" bg-gray-100 hover:bg-secondary hover:border-secondary-light flex gap-1 text-xs tracking-regular border border-primary-dark text-primary-dark px-3 py-2 rounded-lg"
           onClick={() => addTweet({ newTweet })}
           type="button"
         >
           Send
-          <Image src="/send-doggy.png" height={20} width={20} alt="send doggy" />
+          <Image
+            src="/send-doggy.png"
+            height={15}
+            width={15}
+            alt="send doggy"
+          />
         </button>
       </div>
     </form>

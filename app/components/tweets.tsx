@@ -4,7 +4,6 @@ import Likes from "./likes";
 import { useEffect, useOptimistic } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { cookies } from "next/headers";
 
 export default function Tweets({ tweets }: { tweets: TweetWithAuthor[] }) {
   const [optimisticTweets, addOptimisticTweet] = useOptimistic<
@@ -49,17 +48,17 @@ export default function Tweets({ tweets }: { tweets: TweetWithAuthor[] }) {
   return tweets.map((tweet) => (
     <div
       key={tweet.id}
-      className="border border-gray-200 border-t-0 px-4 py-8 flex"
+      className="flex justify-center border border-t-0 border-gray-200 py-8 px-6"
     >
-    <div className="h-12 w-12">
+      <div>
         <Image
-            className="rounded-full"
-            src={tweet.author.avatar_url ?? ""}
-            alt="tweet user avatar"
-            width={48}
-            height={48}
+          className="rounded-full"
+          src={tweet.author.avatar_url ?? ""}
+          alt="tweet user avatar"
+          width={50}
+          height={50}
         />
-    </div>
+      </div>
       <div className="ml-4 flex-1">
         <p>
           <span className="font-semibold text-md text-primary-content">
@@ -69,7 +68,10 @@ export default function Tweets({ tweets }: { tweets: TweetWithAuthor[] }) {
             {tweet.author.user_name}
           </span>
         </p>
-        <p className="text-black text-sm">{tweet.tweet}</p>
+
+        <p className="text-black text-sm break-words overflow-hidden">
+          {tweet.tweet}
+        </p>
         <Likes tweet={tweet} addOptimisticTweet={addOptimisticTweet} />
       </div>
     </div>
