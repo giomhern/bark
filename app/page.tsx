@@ -51,9 +51,9 @@ export default async function Home() {
     <div className="w-full">
       <div className="grid grid-cols-2 items-center py-8 md:py-0">
         <a href="/" className="px-10">
-          <Image src="/bark-logo.png" alt="dog logo" height={60} width={60} />
+          <Image src="/bark-logo.png" alt="dog logo" height={40} width={40} />
         </a>
-        <div className="flex gap-5 justify-end items-center h-10 md:pr-5 bg-primary-dark py-8">
+        <div className="flex gap-5 justify-end items-center pr-5 bg-primary-dark py-8">
           <MyProfileServer />
           <Link
             href="#"
