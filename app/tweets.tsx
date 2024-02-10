@@ -51,15 +51,15 @@ export default function Tweets({ tweets }: { tweets: TweetWithAuthor[] }) {
       key={tweet.id}
       className="border border-gray-200 border-t-0 px-4 py-8 flex"
     >
-      <div className="h-12 w-12">
+    <div className="h-12 w-12">
         <Image
-          className="rounded-full"
-          src={tweet.author.avatar_url}
-          alt="tweet user avatar"
-          width={48}
-          height={48}
+            className="rounded-full"
+            src={tweet.author.avatar_url ?? ""}
+            alt="tweet user avatar"
+            width={48}
+            height={48}
         />
-      </div>
+    </div>
       <div className="ml-4 flex-1">
         <p>
           <span className="font-semibold text-md text-primary-content">

@@ -89,7 +89,7 @@ export default async function ProfilePage({ params }: { params: any }) {
       return (
         <section className="w-full flex">
           <div className="bg-gray-100 w-1/6">
-            <div className="pt-8 pb-5 px-5 flex items-center justify-center text-gray-800">
+            <div className="pt-8 pb-5 px-5 flex items-center justify-left text-gray-800">
               <Image src="/bark-logo.png" alt="logo" height={60} width={60} />
             </div>
             <div className="flex items-center pb-2 gap-3 px-5 ">
