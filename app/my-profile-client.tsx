@@ -26,7 +26,7 @@ export default function MyProfileClient({
   return session ? (
     <button
       onClick={handleUserProfileReq}
-      className="text-md text-gray-100 hover:text-primary-content"
+      className="text-md text-gray-100 hover:text-primary-content md:visible hidden"
     >
       My Profile
     </button>

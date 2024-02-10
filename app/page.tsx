@@ -55,8 +55,18 @@ export default async function Home() {
         </a>
         <div className="flex gap-5 justify-end items-center pr-5 bg-primary-dark py-8">
           <MyProfileServer />
-          <Link href="#" className="font-regular text-gray-100 hover:text-primary-content ">Messages</Link>
-          <Link href="#" className="font-regular text-gray-100 hover:text-primary-content ">Favorites</Link>
+          <Link
+            href="#"
+            className="font-regular text-gray-100 md:visible hidden hover:text-primary-content "
+          >
+            Messages
+          </Link>
+          <Link
+            href="#"
+            className="font-regular text-gray-100 md:visible hidden hover:text-primary-content "
+          >
+            Favorites
+          </Link>
           <AuthButtonServer />
         </div>
       </div>
