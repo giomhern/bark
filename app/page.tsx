@@ -50,7 +50,7 @@ export default async function Home() {
   return (
     <div className="w-full">
       <div className="grid grid-cols-2 items-center">
-        <a href="/" className="px-10">
+        <a href="/" className="px-10 md:py-0 py-5">
           <Image src="/bark-logo.png" alt="dog logo" height={60} width={60} />
         </a>
         <div className="flex gap-5 justify-end items-center pr-5 bg-primary-dark py-8">
