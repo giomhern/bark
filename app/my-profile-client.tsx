@@ -26,11 +26,11 @@ export default function MyProfileClient({
   return session ? (
     <button
       onClick={handleUserProfileReq}
-      className="text-xs text-gray-400 hover:text-[#940a0a]"
+      className="text-md text-gray-100 hover:text-primary-content"
     >
       My Profile
     </button>
   ) : (
-    <button className="text-xs text-gray-400 hidden">Login</button>
+    <button className="text-md text-gray-100 hidden">Login</button>
   );
 }

@@ -54,11 +54,12 @@ export default function NewTweet({ user }: { user: User }) {
           contentEditable="true"
         />
         <button
-          className="hover:bg-[#940a0a] bg-[#5a0101] text-sm pl-4 flex-shrink-0 text-[#f7f7f7] px-4 py-1"
+          className=" bg-gray-100 flex gap-3 text-sm tracking-regular border border-primary-dark text-primary-dark px-5 py-2 rounded-md"
           onClick={() => addTweet({ newTweet })}
           type="button"
         >
           Send
+          <Image src="/send-doggy.png" height={20} width={20} alt="send doggy" />
         </button>
       </div>
     </form>

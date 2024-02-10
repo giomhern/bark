@@ -31,13 +31,13 @@ export default function AuthButtonClient({
 
   return session ? (
     <button
-      className="text-xs text-gray-400 hover:text-[#940a0a]"
+      className="text-md px-5 py-2 border border-gray-100 bg-primary-dark rounded-md text-gray-100"
       onClick={handleSignOut}
     >
       Logout
     </button>
   ) : (
-    <button className="text-xs text-gray-400" onClick={handleSignIn}>
+    <button className="text-md text-gray-100" onClick={handleSignIn}>
       Login
     </button>
   );

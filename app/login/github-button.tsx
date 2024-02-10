@@ -21,7 +21,7 @@ export default function GithubButton() {
   return (
     <button
       onClick={handleSignIn}
-      className="p-8 flex gap-5 font-regular tracking-tight items-center hover:scale-105 rounded-xl"
+      className="p-8 flex gap-5 font-regular items-center hover:scale-105 rounded-xl"
     >
       <Image
         src="/github-logo-dark.png"

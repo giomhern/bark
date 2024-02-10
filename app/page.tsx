@@ -5,9 +5,8 @@ import { redirect } from "next/navigation";
 import NewTweet from "./new-tweet";
 import Tweets from "./tweets";
 import Image from "next/image";
-import MyProfileClient from "./my-profile-client";
 import MyProfileServer from "./my-profile-server";
-
+import Link from "next/link";
 export const dynamic = "force-dynamic";
 
 // anything in the app directory is automatically a server component unless
@@ -49,14 +48,16 @@ export default async function Home() {
     })) ?? [];
 
   return (
-    <div className="w-full max-w-xl mx-auto">
-      <div className="flex items-center justify-between px-4 py-6 border border-gray-200 border-t-0">
-        <a href="/">
-          <Image src="/dog-logo.png" alt="dog logo" height={80} width={80} />
+    <div className="w-full">
+      <div className="grid grid-cols-2 items-center">
+        <a href="/" className="px-10">
+          <Image src="/bark-logo.png" alt="dog logo" height={60} width={60} />
         </a>
-        <div className="flex gap-3">
-            <MyProfileServer />
-            <AuthButtonServer />
+        <div className="flex gap-5 justify-end items-center pr-5 bg-primary-dark py-8">
+          <MyProfileServer />
+          <Link href="#" className="font-regular text-gray-100 hover:text-primary-content ">Messages</Link>
+          <Link href="#" className="font-regular text-gray-100 hover:text-primary-content ">Favorites</Link>
+          <AuthButtonServer />
         </div>
       </div>
       <NewTweet user={session.user} />

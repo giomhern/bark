@@ -62,8 +62,10 @@ export default function Tweets({ tweets }: { tweets: TweetWithAuthor[] }) {
       </div>
       <div className="ml-4 flex-1">
         <p>
-          <span className="font-bold text-md text-[#940a0a]">{tweet.author.name}</span>
-          <span className="text-sm ml-2 text-[#5a0101] ">
+          <span className="font-semibold text-md text-primary-content">
+            {tweet.author.name}
+          </span>
+          <span className="text-sm ml-2 text-secondary-content">
             {tweet.author.user_name}
           </span>
         </p>
