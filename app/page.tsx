@@ -53,7 +53,7 @@ export default async function Home() {
         <a href="/" className="px-10">
           <Image src="/bark-logo.png" alt="dog logo" height={60} width={60} />
         </a>
-        <div className="flex gap-5 justify-end items-center pr-5 bg-primary-dark py-8">
+        <div className="flex gap-5 justify-end items-center h-10 md:pr-5 bg-primary-dark py-8">
           <MyProfileServer />
           <Link
             href="#"
