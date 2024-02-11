@@ -69,7 +69,7 @@ const links = [
 export default function LeftSideBar({ user }: { user: User }) {
   return (
     <div className="bg-gray-100 px-5">
-      <ul className="flex flex-col items-start h-1/3 w-full px-5">
+      <ul className="md:flex md:flex-col items-start h-1/3 w-full px-5 md:visible hidden">
         {links.map((link) => (
           <a
             href={link.url}

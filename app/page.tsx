@@ -48,13 +48,13 @@ export default async function Home() {
   return (
     <div className="w-full bg-gray-100">
       <Navigation session={session} />
-      <div className="grid grid-cols-4">
-        <LeftSideBar user={session.user}/>
-        <div className="border-t-0 flex flex-col col-span-2">
+      <div className="grid md:grid-cols-4 grid-cols-1">
+        <LeftSideBar user={session.user} />
+        <div className="border-t-0 md:flex md:flex-col md:col-span-2">
           <NewTweet user={session.user} />
           <Tweets tweets={tweets} />
         </div>
-        <div className="">hello world</div>
+        <div className=" md:visible hidden">hello world</div>
       </div>
     </div>
   );
