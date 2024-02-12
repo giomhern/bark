@@ -3,8 +3,9 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import NewTweet from "./components/new-tweet";
 import Tweets from "./components/tweets";
-import Navigation from "./components/nav-bar";
 import LeftSideBar from "./components/left-side-bar";
+import RightSideBar from "./components/right-side-bar";
+import Image from "next/image";
 export const dynamic = "force-dynamic";
 
 // anything in the app directory is automatically a server component unless
@@ -13,8 +14,6 @@ export const dynamic = "force-dynamic";
 // async lets us fetch data in the same component
 export default async function Home() {
   // runs all on the server
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const key = process.env.NEXT_PUBLIC_ANON_KEY;
   const supabase = createServerComponentClient<Database>(
     { cookies },
     {
@@ -22,6 +21,7 @@ export default async function Home() {
       supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
     }
   );
+
   const {
     data: { session },
   } = await supabase.auth.getSession();
@@ -47,14 +47,27 @@ export default async function Home() {
 
   return (
     <div className="w-full bg-gray-100">
-      <Navigation session={session} />
       <div className="grid md:grid-cols-4 grid-cols-1">
         <LeftSideBar user={session.user} />
-        <div className="border-t-0 md:flex md:flex-col md:col-span-2">
+        <div className="flex flex-col md:justify-normal md:col-span-2 gap-3 px-5 md:px-0">
+          <div className="max-w-lg mx-auto">
+            <Image
+              className="md:hidden visible py-2"
+              src="/bark-logo.png"
+              alt="this is the logo"
+              width={50}
+              height={50}
+            />
+          </div>
           <NewTweet user={session.user} />
-          <Tweets tweets={tweets} />
+          <div
+            className="overflow-y-auto flex flex-col gap-3 px-5 md:px-0"
+            style={{ maxHeight: "calc(100vh)" }}
+          >
+            <Tweets tweets={tweets} />
+          </div>
         </div>
-        <div className=" md:visible hidden">hello world</div>
+        <RightSideBar user={session.user} />
       </div>
     </div>
   );

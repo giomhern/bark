@@ -7,7 +7,8 @@ const inter = Inter({ subsets: ["latin"] });
 const rubik = Rubik({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "bark",
+  title: "Bark",
+  description: "Developed By Giovanni Maya",
 };
 
 export default function RootLayout({
@@ -18,7 +19,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <div className={`${rubik.className} bg-white min-h-screen flex`}>
+        <div
+          className={`${rubik.className} py-5 bg-gray-100 min-h-screen flex`}
+        >
           {children}
         </div>
       </body>

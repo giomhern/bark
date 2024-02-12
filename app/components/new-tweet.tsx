@@ -11,6 +11,19 @@ export default function NewTweet({ user }: { user: User }) {
   });
   const router = useRouter();
   const [newTweet, setNewTweet] = useState("");
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  useEffect(() => {
+    adjustTextareaHeight();
+  }, [newTweet]); // Adjust height whenever newTweet changes
+
+  const adjustTextareaHeight = () => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = "inherit"; // Reset height to calculate new scroll height
+      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+    }
+  };
+  
   const handleFormSubmit = (event: { preventDefault: () => void }) => {
     event.preventDefault(); // Prevent the form from submitting on Enter key or form action
   };
@@ -28,12 +41,11 @@ export default function NewTweet({ user }: { user: User }) {
     }
   }
 
-  const handleTweetChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNewTweet(e.target.value);
-  };
-
   return (
-    <form className="border border-gray-200 flex " onSubmit={handleFormSubmit}>
+    <form
+      className="border bg-white rounded-xl shadow-sm"
+      onSubmit={handleFormSubmit}
+    >
       <div className="flex w-full gap-2 py-4 px-6 items-center justify-evenly ">
         <Image
           src={user.user_metadata.avatar_url}
@@ -42,7 +54,8 @@ export default function NewTweet({ user }: { user: User }) {
           width={50}
           className="rounded-full"
         />
-        <input
+        <textarea
+          ref={textareaRef}
           name="title"
           className="flex-1 appearance-none text-sm text-[#191515] placeholder-gray-500 placeholder:text-md bg-transparent border-none w-full mr-3 py-1 px-2 leading-tight focus:outline-none resize-none overflow-hidden"
           placeholder="What is happening?!"
@@ -50,17 +63,11 @@ export default function NewTweet({ user }: { user: User }) {
           value={newTweet}
         />
         <button
-          className=" bg-gray-100 hover:bg-secondary hover:border-secondary-light flex gap-1 text-xs tracking-regular border border-primary-dark text-primary-dark px-3 py-2 rounded-lg"
+          className=" bg-primary-dark hover:bg-primary-light hover:border-primary-light flex gap-1 text-xs tracking-regular border border-primary-dark px-5 text-white py-2 rounded-full"
           onClick={() => addTweet({ newTweet })}
           type="button"
         >
           Send
-          <Image
-            src="/send-doggy.png"
-            height={15}
-            width={15}
-            alt="send doggy"
-          />
         </button>
       </div>
     </form>

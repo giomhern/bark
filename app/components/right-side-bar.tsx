@@ -1,8 +1,8 @@
 "use client";
-
 import { User } from "@supabase/supabase-js";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 const links = [
   {
     name: "Home",
@@ -67,25 +67,38 @@ const links = [
     ),
   },
 ];
-export default function LeftSideBar({ user }: { user: User }) {
-  return (
-    <div className="md:flex md:flex-col gap-3 items-center md:visible hidden">
-      <a href="/" className="py-4">
-        <Image src="/bark-logo.png" alt="doggy logo" width={56} height={56} />
-      </a>
 
-      <div className="bg-white border-gray-100 w-10/12 flex flex-col divide-y border rounded-xl">
-        {links.map((link) => (
-          <Link
-            href={link.url}
-            key={link.name}
-            className="p-5 flex fill-gray-500 text-gray-500 items-center gap-2 text-sm border-transparent hover:fill-primary-dark hover:text-primary-dark hover:bg-white hover:rounded-md hover:border-r-primary-dark hover:border-r-4 hover:border-rounded-sm"
-          >
-            {link.icon}
-            <span>{link.name}</span>
-          </Link>
-        ))}
-      </div>
+export default function RightSideBar({ user }: { user: User }) {
+  const [newSearch, setNewSearch] = useState("");
+
+  const handleSearchSubmit = () => {
+    console.log("clicked the button for search submit ==> will implement soon");
+  };
+
+  return (
+    <div className=" md:flex md:flex-col gap-3 items-center md:visible hidden pt-3">
+      <form
+        className="border bg-white rounded-xl flex items-center shadow-sm px-3 py-2"
+        onSubmit={handleSearchSubmit}
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          x="0px"
+          y="0px"
+          width="20"
+          height="20"
+          viewBox="0 0 50 50"
+        >
+          <path d="M 21 3 C 11.601563 3 4 10.601563 4 20 C 4 29.398438 11.601563 37 21 37 C 24.355469 37 27.460938 36.015625 30.09375 34.34375 L 42.375 46.625 L 46.625 42.375 L 34.5 30.28125 C 36.679688 27.421875 38 23.878906 38 20 C 38 10.601563 30.398438 3 21 3 Z M 21 7 C 28.199219 7 34 12.800781 34 20 C 34 27.199219 28.199219 33 21 33 C 13.800781 33 8 27.199219 8 20 C 8 12.800781 13.800781 7 21 7 Z"></path>
+        </svg>
+        <input
+          placeholder="Search Bark"
+          name="title"
+          className="flex-1 appearance-none text-sm text-[#191515] placeholder-gray-500 placeholder:text-md bg-transparent border-none w-full mr-3 py-1 px-2 leading-tight focus:outline-none resize-none overflow-hidden"
+          onChange={(e) => setNewSearch(e.target.value)}
+          value={newSearch}
+        />
+      </form>
     </div>
   );
 }

@@ -48,7 +48,7 @@ export default function Tweets({ tweets }: { tweets: TweetWithAuthor[] }) {
   return tweets.map((tweet) => (
     <div
       key={tweet.id}
-      className="flex justify-center border border-t-0 border-gray-200 py-8 px-6"
+      className="flex justify-center border border-gray-200 px-6 py-4 rounded-xl bg-white shadow-sm"
     >
       <div>
         <Image
@@ -69,7 +69,7 @@ export default function Tweets({ tweets }: { tweets: TweetWithAuthor[] }) {
           </span>
         </p>
 
-        <p className="text-black text-sm break-words overflow-hidden">
+        <p className="text-black text-sm break-all overflow-hidden pb-1">
           {tweet.tweet}
         </p>
         <Likes tweet={tweet} addOptimisticTweet={addOptimisticTweet} />
