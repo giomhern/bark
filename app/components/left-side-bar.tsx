@@ -69,17 +69,17 @@ const links = [
 ];
 export default function LeftSideBar({ user }: { user: User }) {
   return (
-    <div className="md:flex md:flex-col gap-3 items-center md:visible hidden">
+    <div className="md:flex md:flex-col gap-3 items-center md:visible hidden ">
       <a href="/" className="py-4">
         <Image src="/bark-logo.png" alt="doggy logo" width={56} height={56} />
       </a>
 
-      <div className="bg-white border-gray-100 w-10/12 flex flex-col divide-y border rounded-xl">
+      <div className="bg-white w-10/12 flex flex-col divide-y rounded-xl">
         {links.map((link) => (
           <Link
             href={link.url}
             key={link.name}
-            className="p-5 flex fill-gray-500 text-gray-500 items-center gap-2 text-sm border-transparent hover:fill-primary-dark hover:text-primary-dark hover:bg-white hover:rounded-md hover:border-r-primary-dark hover:border-r-4 hover:border-rounded-sm"
+            className={`p-5 flex fill-gray-500 text-gray-500 border-transparent border-b-0 ${link === links[links.length - 1] ? 'rounded-br-xl' : ''} items-center gap-2 text-sm shadow-sm border hover:fill-primary-dark hover:text-primary-dark hover:bg-white hover:rounded-md hover:border-r-primary-dark hover:border-t-gray-100 hover:border-r-4 hover:border-rounded-sm`}
           >
             {link.icon}
             <span>{link.name}</span>
