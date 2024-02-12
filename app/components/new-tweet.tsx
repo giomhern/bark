@@ -57,8 +57,8 @@ export default function NewTweet({ user }: { user: User }) {
         <textarea
           ref={textareaRef}
           name="title"
-          className="flex-1 appearance-none text-sm text-[#191515] placeholder-gray-500 placeholder:text-md bg-transparent border-none w-full mr-3 py-1 px-2 leading-tight focus:outline-none resize-none overflow-hidden"
-          placeholder="What is happening?!"
+          className="flex-1 appearance-none text-sm text-primary-content placeholder-gray-500 placeholder:text-md bg-transparent border-none w-full mr-3 py-1 px-2 leading-tight focus:outline-none resize-none overflow-hidden"
+          placeholder="What are you barking?!"
           onChange={(e) => setNewTweet(e.target.value)}
           value={newTweet}
         />
