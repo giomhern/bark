@@ -4,14 +4,16 @@ import type { User } from "@supabase/auth-helpers-nextjs";
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+
 export default function NewTweet({ user }: { user: User }) {
+  const router = useRouter();
+  const [newTweet, setNewTweet] = useState("");
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  
   const supabase = createClientComponentClient<Database>({
     supabaseKey: process.env.NEXT_PUBLIC_ANON_KEY,
     supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
   });
-  const router = useRouter();
-  const [newTweet, setNewTweet] = useState("");
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
     adjustTextareaHeight();
@@ -23,10 +25,11 @@ export default function NewTweet({ user }: { user: User }) {
       textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
     }
   };
-  
+
   const handleFormSubmit = (event: { preventDefault: () => void }) => {
     event.preventDefault(); // Prevent the form from submitting on Enter key or form action
   };
+
   async function addTweet({ newTweet }: { newTweet: string }) {
     try {
       const { error } = await supabase

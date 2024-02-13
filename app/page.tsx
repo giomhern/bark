@@ -61,7 +61,7 @@ export default async function Home() {
           </div>
           <NewTweet user={session.user} />
           <div
-            className="md:overflow-y-auto flex flex-col gap-3 md:px-0 bg-gray-100"
+            className="overflow-y-auto flex flex-col gap-3 md:px-0 bg-gray-100"
             style={{ maxHeight: "calc(100vh)" }}
           >
             <Tweets tweets={tweets} />
