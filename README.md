@@ -21,3 +21,5 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+Keep in mind that this won't work completely due to the production settings of OAuth apps in Github and the URL configuration.
