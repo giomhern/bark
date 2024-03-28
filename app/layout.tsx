@@ -20,7 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <div
-          className={`${rubik.className} py-5 bg-gray-100 min-h-screen flex`}
+          className={`${rubik.className} py-5min-h-screen flex`}
         >
           {children}
         </div>
