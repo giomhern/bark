@@ -46,7 +46,7 @@ export default async function Home() {
     })) ?? [];
 
   return (
-    <div className="w-full bg-gray-100">
+    <div className="w-full ">
       <div className="grid md:grid-cols-4 grid-cols-1">
         <LeftSideBar user={session.user} />
         <div className="flex flex-col md:justify-normal md:col-span-2 gap-3 px-5 md:px-0 bg-gray-100">
