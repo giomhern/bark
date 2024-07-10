@@ -18,7 +18,7 @@ export default function EmailComponent() {
       </button>
 
       <p className="text-xs">
-        By continuing with Google, Apple, or email, you agree to Bark's{" "}
+        By continuing with Google, Apple, or email, you agree to Bark&apos;s{" "}
         <a className="underline">Terms of Service</a> and{" "}
         <a className="underline">Privacy Policy</a>.
       </p>

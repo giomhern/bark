@@ -33,7 +33,7 @@ export default async function Login() {
         </div>
 
         <div>
-          <img src="/login.png" alt="login screen" />
+          <img src="/login.png" alt="login screen"/>
         </div>
       </div>
     </main>
