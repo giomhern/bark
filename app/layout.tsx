@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Rubik } from "next/font/google";
+import Navigation from "./components/navigation";
 
 const inter = Inter({ subsets: ["latin"] });
 const rubik = Rubik({ subsets: ["latin"] });
@@ -19,9 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <div
-          className={`${rubik.className} py-5 min-h-screen flex`}
-        >
+        <div className={`${rubik.className} py-5 min-h-screen flex`}>
           {children}
         </div>
       </body>

@@ -6,6 +6,7 @@ import Tweets from "./components/tweets";
 import LeftSideBar from "./components/left-side-bar";
 import RightSideBar from "./components/right-side-bar";
 import Image from "next/image";
+import AuthButtonClient from "./components/auth-button";
 export const dynamic = "force-dynamic";
 
 // anything in the app directory is automatically a server component unless
@@ -47,6 +48,7 @@ export default async function Home() {
 
   return (
     <div className="w-full ">
+      <AuthButtonClient session={session} />;
       <div className="grid md:grid-cols-4 grid-cols-1">
         <LeftSideBar user={session.user} />
         <div className="flex flex-col md:justify-normal md:col-span-2 gap-3 px-5 md:px-0 bg-gray-100">
